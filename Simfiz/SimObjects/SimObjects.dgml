@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="Axle" Bounds="0,111.92,50,25.96" />
+    <Node Id="Circle" Bounds="260,111.92,50,25.96" />
+    <Node Id="Constraint" Bounds="91.3266666666665,55.96,109.346666666667,25.96" Label="ConstraintObject" />
+    <Node Id="Plane" Bounds="230.955,55.96,70.09,25.96" Label="HalfPlane" />
+    <Node Id="PlaneFigure" Bounds="331.063333333333,55.96,81.8733333333332,25.96" />
+    <Node Id="Polygon" Bounds="340.325,111.92,63.35,25.96" />
+    <Node Id="Rectangle" Bounds="433.895,111.92,72.21,25.96" />
+    <Node Id="SimObject" Bounds="228.745,0,74.51,25.96" Label="SimObject" />
+    <Node Id="Spring" Bounds="80.8183333333334,111.92,54.3633333333332,25.96" />
+    <Node Id="Thruster" Bounds="166.175,111.92,63.65,25.96" />
+  </Nodes>
+  <Links>
+    <Link Source="Constraint" Target="Axle" Bounds="57.8127708435059,81.9199981689453,60.1211128234863,27.8047714233398" />
+    <Link Source="Constraint" Target="Spring" Bounds="121.870140075684,81.9199981689453,15.3157119750977,22.5543975830078" />
+    <Link Source="Constraint" Target="Thruster" Bounds="158.061477661133,81.9199981689453,21.7506408691406,23.4070434570313" />
+    <Link Source="PlaneFigure" Target="Circle" Bounds="312.749145507813,81.9199981689453,39.0710754394531,25.1312484741211" />
+    <Link Source="PlaneFigure" Target="Polygon" Bounds="372,81.9199981689453,0,21" />
+    <Link Source="PlaneFigure" Target="Rectangle" Bounds="394.731231689453,81.9199981689453,44.7219848632813,25.5371551513672" />
+    <Link Source="SimObject" Target="Constraint" Bounds="181.990859985352,25.9599990844727,56.1749725341797,26.1962661743164" />
+    <Link Source="SimObject" Target="Plane" Bounds="266,25.9599990844727,0,21" />
+    <Link Source="SimObject" Target="PlaneFigure" Bounds="290.586853027344,25.9599990844727,48.8673095703125,25.7982597351074" />
+  </Links>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+  </Properties>
+</DirectedGraph>
