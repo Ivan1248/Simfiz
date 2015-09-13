@@ -1,4 +1,4 @@
-﻿Namespace Datatypes
+﻿Namespace DataTypes
     Public Structure Vector2
         Public x, y As Double
 
@@ -39,12 +39,12 @@
             Return New Vector2(v1.x / d, v1.y / d)
         End Operator
 
-        Public Shared Function DistanceSqr(v1 As Vector2, v2 As Vector2) As Double
+        Public Shared Function DifferenceMagnitudeSqr(v1 As Vector2, v2 As Vector2) As Double
             Return (v1.x - v2.x) ^ 2 + (v1.y - v2.y) ^ 2
         End Function
 
-        Public Shared Function Distance(v1 As Vector2, v2 As Vector2) As Double
-            Return Math.Sqrt(DistanceSqr(v1, v2))
+        Public Shared Function DifferenceMagnitude(v1 As Vector2, v2 As Vector2) As Double
+            Return Math.Sqrt(DifferenceMagnitudeSqr(v1, v2))
         End Function
 
         Public Shared Function Average(vectors As Vector2()) As Vector2
@@ -62,5 +62,6 @@
         Public Shared Function UnitVector(angle As Double) As Vector2
             Return New Vector2(Math.Cos(angle), Math.Sin(angle))
         End Function
+
     End Structure
 End Namespace

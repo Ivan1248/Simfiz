@@ -90,8 +90,8 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Datatypes\Tuple.vb" />
-    <Compile Include="Datatypes\Vector2.vb" />
+    <Compile Include="DataTypes\Tuple.vb" />
+    <Compile Include="DataTypes\Vector2.vb" />
     <Compile Include="GUI.vb">
       <SubType>Form</SubType>
     </Compile>

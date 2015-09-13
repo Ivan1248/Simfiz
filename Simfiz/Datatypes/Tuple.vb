@@ -1,4 +1,4 @@
-﻿Namespace Datatypes
+﻿Namespace DataTypes
     Public Structure Tuple(Of T1, T2)
         Public E1 As T1
         Public E2 As T2

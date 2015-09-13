@@ -1,4 +1,4 @@
-﻿Imports Simfiz.Datatypes
+﻿Imports Simfiz.DataTypes
 
 Namespace SimObjects
     Public MustInherit Class SimObject
@@ -22,69 +22,57 @@ Namespace SimObjects
         End Sub
     End Class
 
-    Public MustInherit Class PlaneFigure
-        Inherits SimObject
+    Public MustInherit Class RigidBody : Inherits SimObject
         Public BodyId As Integer
         ' Metaphysical constants
         Public Fixed As Boolean
-        ' Variables
-        Public Pos As Vector2
-        Public Vel As Vector2
-        Public Ang As Double
-        Public AngVel As Double
-        ' Depedent variables
-        Public Momentum As Vector2
-        Public RotMomentum As Double
-        ' Dependent constants
+        ' Constants
+        Public Restitution As Double
+        Public Friction As Double
         Public Mass As Double
         Public RotInertia As Double
         Public Area As Double
+        ' Auxiliary constants
         Public Density As Double
-        ' Independent constants
-        Public Restitution As Double
-        Public Friction As Double
-        ' Simulation
-        Public NextPos As Vector2
-        Public NextAng As Double
+        ' State variables
+        Public Position As Vector2
+        Public Orientation As Double
+        Public Momentum As Vector2
+        Public AngMomentum As Double
+        ' Auxiliary state variables
+        Public Velocity As Vector2
+        Public AngVelocity As Double
 
         Sub New(pos As Vector2, angle As Double)
-            Me.Pos = pos
-            Me.Vel = New Vector2(0, 0)
-            Me.Ang = angle
-            Me.AngVel = 0
-            ' RotInertia = 
-        End Sub
-
-        Public Sub ApplyImpulse(radius As Vector2, impulse As Vector2)
-            Momentum += impulse
-            RotMomentum += Vector2.DotProduct(radius, impulse)
-            Vel = Momentum / Mass
-            AngVel = RotMomentum / RotInertia
+            Me.Position = pos
+            Me.Velocity = New Vector2(0, 0)
+            Me.Orientation = angle
+            Me.AngVelocity = 0
         End Sub
     End Class
 
-    Public Class Circle : Inherits PlaneFigure
+    Public Class Circle : Inherits RigidBody
         Public Radius As Double
 
         Sub New(pos As Vector2, radius As Double, angle As Double)
             MyBase.New(pos, angle)
-            Radius = radius
-            RotInertia = Density * 1 / 2 * Math.PI * radius ^ 4
+            Me.Radius = radius
+            Me.RotInertia = Density * 1 / 2 * Math.PI * radius ^ 4
         End Sub
     End Class
 
-    Public Class Rectangle : Inherits PlaneFigure
+    Public Class Rectangle : Inherits RigidBody
         Public Dimensions As Vector2
 
         Sub New(pos As Vector2, angle As Double, dimensions As Vector2)
             MyBase.New(pos, angle)
             Me.Dimensions = dimensions
             'BigRadius = 0.5 * dimensions.Magnitude
-            RotInertia = Density * 1 / 12 * dimensions.x * dimensions.y * dimensions.MagnitudeSqr
+            Me.RotInertia = Density * 1 / 12 * dimensions.x * dimensions.y * dimensions.MagnitudeSqr
         End Sub
     End Class
 
-    Public Class Polygon : Inherits PlaneFigure
+    Public Class Polygon : Inherits RigidBody
         'Vertices are ordered counterclockwise.
         Public Vertices As Vector2()
         Public Convex As Boolean ' calculated
@@ -92,11 +80,11 @@ Namespace SimObjects
         Sub New(vertices As Vector2(), angle As Double)
             MyBase.New(New Vector2(0, 0), angle) ' promijeniti
             ' promijeniti
-            Pos = New Vector2(0, 0)
+            Me.Position = New Vector2(0, 0)
             For i As Integer = 0 To vertices.Length
-                Pos += vertices(i)
+                Me.Position += vertices(i)
             Next
-            Pos /= vertices.Length
+            Me.Position /= vertices.Length
 
             Dim posOffset As New Vector2(0, 0)
             Me.Vertices = vertices
@@ -112,9 +100,8 @@ Namespace SimObjects
         End Sub
     End Class
 
-    Public Class Thruster
-        Inherits SimObject
-        Public Body As Double
+    Public Class Thruster : Inherits SimObject
+        Public Body As RigidBody
 
         Public RelPos As Vector2
         Public RelAng As Double

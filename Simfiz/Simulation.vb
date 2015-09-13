@@ -7,7 +7,7 @@ Public Class Simulation
 #Region "Fields"
 
 
-    Dim Running As Boolean = False
+    Private Running As Boolean = False
     Dim Frequency As Integer = 100
     Dim Chronon As Double = 0.01       ' 1/Frequncy
 
@@ -30,7 +30,7 @@ Public Class Simulation
     End Sub
 
     Public Sub CalculateNextPossAndAngs()
-        For Each ps As PlaneFigure In AllBodies
+        For Each ps As RigidBody In AllBodies
             ps.NextPos = ps.Pos + ps.Vel * Chronon
             ps.NextAng = ps.NextAng + ps.AngVel * Chronon
         Next
@@ -48,11 +48,11 @@ Public Class Simulation
             For j As Integer = i + 1 To Circles.Count
                 If i = j Then Continue For
                 Dim radiiSum As Double = Circles(i).Radius + Circles(j).Radius
-                If Math.Abs(Circles(i).Pos.x - Circles(j).Pos.x) > radiiSum OrElse
-                    Math.Abs(Circles(i).Pos.y - Circles(j).Pos.y) > radiiSum Then
+                If Math.Abs(Circles(i).Position.x - Circles(j).Position.x) > radiiSum OrElse
+                    Math.Abs(Circles(i).Position.y - Circles(j).Position.y) > radiiSum Then
                     Continue For
                 End If
-                If Vector2.Distance(Circles(i).NextPos, Circles(j).NextPos) < radiiSum Then
+                If Vector2.DifferenceMagnitude(Circles(i).NextPos, Circles(j).NextPos) < radiiSum Then
                     CirclesCollidingCircles.Add(New Tuple(Of Circle, Circle)(Circles(i), Circles(j)))
                 End If
             Next

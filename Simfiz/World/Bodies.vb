@@ -5,7 +5,7 @@ Namespace World
 
     Module Bodies
         ' List of all bodies
-        Public AllBodies As New List(Of PlaneFigure)
+        Public AllBodies As New List(Of RigidBody)
         ' Lists of bodies by type
         Public Planes As New List(Of HalfPlane)
         Public Circles As New List(Of Circle)
