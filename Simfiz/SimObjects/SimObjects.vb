@@ -68,7 +68,7 @@ Namespace SimObjects
             MyBase.New(pos, angle)
             Me.Dimensions = dimensions
             'BigRadius = 0.5 * dimensions.Magnitude
-            Me.RotInertia = Density * 1 / 12 * dimensions.x * dimensions.y * dimensions.MagnitudeSqr
+            Me.RotInertia = Density * 1 / 12 * dimensions.x * dimensions.y * dimensions.MagnitudeSquare
         End Sub
     End Class
 

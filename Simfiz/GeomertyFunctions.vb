@@ -5,8 +5,8 @@ Module GeomertyFunctions
         Dim d, r As Double
         Dim p As Double
         Dim c As Vector2 = (t1 + t2 + t3) / 3
-        d = (c - point).MagnitudeSqr
-        r = Math.Max((c - t1).MagnitudeSqr, Math.Max((c - t2).MagnitudeSqr, (c - t3).MagnitudeSqr))
+        d = (c - point).MagnitudeSquare
+        r = Math.Max((c - t1).MagnitudeSquare, Math.Max((c - t2).MagnitudeSquare, (c - t3).MagnitudeSquare))
 
         If d > r Then Return False
 

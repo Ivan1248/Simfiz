@@ -52,7 +52,7 @@ Public Class Simulation
                     Math.Abs(Circles(i).Position.y - Circles(j).Position.y) > radiiSum Then
                     Continue For
                 End If
-                If Vector2.DifferenceMagnitude(Circles(i).NextPos, Circles(j).NextPos) < radiiSum Then
+                If Vector2.Norm(Circles(i).NextPos, Circles(j).NextPos) < radiiSum Then
                     CirclesCollidingCircles.Add(New Tuple(Of Circle, Circle)(Circles(i), Circles(j)))
                 End If
             Next

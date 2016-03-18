@@ -7,12 +7,12 @@
             Me.y = y
         End Sub
 
-        Function MagnitudeSqr() As Double
+        Function MagnitudeSquare() As Double
             Return x ^ 2 + y ^ 2
         End Function
 
         Function Magnitude() As Double
-            Return Math.Sqrt(MagnitudeSqr())
+            Return Math.Sqrt(MagnitudeSquare())
         End Function
 
         Public Shared Operator -(v As Vector2) As Vector2
@@ -39,12 +39,12 @@
             Return New Vector2(v1.x / d, v1.y / d)
         End Operator
 
-        Public Shared Function DifferenceMagnitudeSqr(v1 As Vector2, v2 As Vector2) As Double
+        Public Shared Function NormSquare(v1 As Vector2, v2 As Vector2) As Double
             Return (v1.x - v2.x) ^ 2 + (v1.y - v2.y) ^ 2
         End Function
 
-        Public Shared Function DifferenceMagnitude(v1 As Vector2, v2 As Vector2) As Double
-            Return Math.Sqrt(DifferenceMagnitudeSqr(v1, v2))
+        Public Shared Function Norm(v1 As Vector2, v2 As Vector2) As Double
+            Return Math.Sqrt(NormSquare(v1, v2))
         End Function
 
         Public Shared Function Average(vectors As Vector2()) As Vector2
@@ -56,7 +56,7 @@
         End Function
 
         Public Shared Function DotProduct(v1 As Vector2, v2 As Vector2) As Double
-            Return v1.x * v2.y - v1.y * v2.x
+            Return v1.x * v2.y + v1.y * v2.x
         End Function
 
         Public Shared Function UnitVector(angle As Double) As Vector2
